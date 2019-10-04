@@ -3,7 +3,6 @@
 set.seed(7)
 U = function(x){dunif(x,0,10)}
 x <- seq(-5,15,0.001)
-x
 plot(x, U(x), type = 'b', col = 'dark red', main = 'PDF of a Uniform Distribution')
 
 
