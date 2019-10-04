@@ -1,9 +1,10 @@
 # Q (1b)
 set.seed(7)
-uni = function(x){dunif(x,0,10)}
+U = function(x){dunif(x,0,10)}
 x <- seq(-5,15,0.001)
 x
-plot(x, uni(x), typ = 'b', col = 'dark red')
+plot(x, U(x), typ = 'b', col = 'dark red')
+
 
 # Q.1b
 
