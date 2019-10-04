@@ -1,12 +1,13 @@
-# Q (1b)
+# Q. 1b(i)
+
 set.seed(7)
 U = function(x){dunif(x,0,10)}
 x <- seq(-5,15,0.001)
 x
-plot(x, U(x), typ = 'b', col = 'dark red')
+plot(x, U(x), type = 'b', col = 'dark red', main = 'PDF of a Uniform Distribution')
 
 
-# Q.1b
+# Q.1b(ii)
 
 cdf = function(x){punif(x,0,10)}
 plot(x,cdf(x),type='l', col = 'dark green', lwd = 3)
