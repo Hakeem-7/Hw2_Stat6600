@@ -10,12 +10,12 @@ plot(x, uni(x), typ = 'b', col = 'dark red')
 cdf = function(x){punif(x,0,10)}
 plot(x,cdf(x),type='l', col = 'dark green', lwd = 3)
 
-
 # Q.1c (i)
 
 m = runif(50,0,10)
 hist(m, probability = T, breaks = 20)
 curve(dunif(x,0,10), col= 2, lwd=2, add=TRUE)
+
 
 # Q.1c (ii)
 plot(ecdf(m))

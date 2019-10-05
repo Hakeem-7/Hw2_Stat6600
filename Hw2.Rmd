@@ -1,12 +1,12 @@
 ---
-title: "Hw2"
+title: "Homework 2"
 author: "Akeem Ajede"
 date: "10/4/2019"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 # Q. 1b(i)
