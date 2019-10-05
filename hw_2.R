@@ -1,28 +1,28 @@
-# Q (1b)
+# Q.1b(i)
 set.seed(7)
 uni = function(x){dunif(x,0,10)}
 x <- seq(-5,15,0.001)
 x
 plot(x, uni(x), typ = 'b', col = 'dark red')
 
-# Q.1b
+# Q.1b(ii)
 
 cdf = function(x){punif(x,0,10)}
 plot(x,cdf(x),type='l', col = 'dark green', lwd = 3)
 
 
-# Q.1c (i)
+# Q.1c(i)
 
 m = runif(50,0,10)
 hist(m, probability = T, breaks = 20)
 curve(dunif(x,0,10), col= 2, lwd=2, add=TRUE)
 
-# Q.1c (ii)
+# Q.1c(ii)
 plot(ecdf(m))
 curve(punif(x,0,10), col= 2, lwd=2, add=TRUE)
 
 
-# Q.1d 
+# Q.1d(i) 
 j = runif(1000,0,10)
 hist(j, probability = T, breaks = 15)
 curve(dunif(x,0,10), col= 'blue', lwd=2, add=TRUE)
@@ -50,7 +50,7 @@ theta2 = apply(sample.space,1,max) #Compute the max of each row
 theta3 = ((n+1)/n)*(apply(sample.space,1,max)) #Compute the max of each row
 
 
-# Q. 2d(ii)
+# Q.2d(ii)
 set.seed(7001)
 
 par(mfcol = c(2,2)) #2 rows by 2 col output space
@@ -67,7 +67,7 @@ plot(ecdf(theta3), lwd = 2)
 curve(((x^30)/(10^30))*((30/31)^30), col="red", lwd=2, add=TRUE)
 
 
-# Q. 2d(iii)
+# Q.2d(iii)
 
 bias1 = mean(theta1) - 10 #from bias  = E(theta) - theta, where theta = 10 in U(0,10)
 
