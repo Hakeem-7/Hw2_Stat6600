@@ -1,17 +1,23 @@
 ---
-title: "Hw2"
+title: "Homework 2"
 author: "Akeem Ajede"
 date: "10/4/2019"
-output: pdf_document
+output:
+  word_document: default
+  pdf_document: default
+  html_document:
+    df_print: paged
+fontsize: 11pt
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
+
 
 # Q. 1b(i)
 
-Sketch the pdf of U(0,10)
+Sketch the pdf of U(0,10).
 
 ```{r}
 set.seed(7001)
@@ -23,7 +29,7 @@ plot(x, U(x), type = 'l', col = 'dark red', main = 'PDF of a Uniform Distributio
 
 # Q.1b(ii)
 
-Sketch the cdf of U(0,10)
+Sketch the cdf of U(0,10).
 
 ```{r}
 set.seed(7001)
@@ -80,6 +86,8 @@ curve(punif(x,0,10), col= 2, lwd=2, add=TRUE)
 
 # Q. 2d
 
+Use R to generate 1000 independent random samples of size 30 from Uniform(0, 10). Compute the corresponding 1000 values of $\bf\hat{\theta_1},\bf\hat{\theta_2},\bf\hat{\theta_3}.$
+
 ```{r}
 
 set.seed(7001)
@@ -102,6 +110,8 @@ theta3 = ((n+1)/n)*(apply(sample.space,1,max)) #Compute the max of each row
 
 
 # Q. 2d(i)
+
+For each estimator, draw the histograms based on their 1000 estimates. Include the theoretical pdf overlayed. For $\bf\hat{\theta_1},$ you can use the approximate distribution in part (c).
 
 ```{r}
 
@@ -127,6 +137,8 @@ curve(((30*(x^29))/10^30)*((30/31)^30), col= 2, lwd=2, add=TRUE)
 
 # Q. 2d(ii)
 
+For each estimator, draw the ecdf based on their 1000 estimates. Include the theoretical cdf overlayed. For $\bf\hat{\theta_1},$ you can use the approximate distribution in part (c).
+
 ```{r}
 set.seed(7001)
 
@@ -145,6 +157,10 @@ curve(((x^30)/(10^30))*((30/31)^30), col="red", lwd=2, add=TRUE)
 ```
 
 # Q. 2d(iii)
+
+Compute the empirical bias, variance and MSE for each of the estimators. Compare
+and contrast.
+Note: $bias\bf\hat{(\theta_1})$ = $\bf\bar{\hat{(\theta_1})}$ − $\bf{\theta}$ and MSE can be computed as above or recall, $MSE = Var + bias^2.$
 
 ```{r}
 
@@ -173,6 +189,7 @@ MSE1 > MSE3 #i.e., MSE3 is also less than MSE1
 MSE2 > MSE3 #MSE3 is less than both MSE1 and MSE2
 ```
 
-Since MSE3 is less than both MSE1 and MSE2, MSE3 (i.e.,the mean square error of the modified MLE) has the least residual error for a 1000 uniform random samples of size 30.
+Since $MSE_3$ is less than both $MSE_1$ and $MSE_2$, $MSE_3$ (i.e.,the mean square error of the modified MLE) has the least residual error for a 1000 uniform random samples of size 30.
+
 
 
