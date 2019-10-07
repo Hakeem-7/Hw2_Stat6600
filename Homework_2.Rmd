@@ -2,17 +2,19 @@
 title: "Homework 2"
 author: "Akeem Ajede"
 date: "10/4/2019"
+header-includes:
+   - \DeclareUnicodeCharacter{2212}{-}
+
 output:
-  word_document: default
   pdf_document: default
-  html_document:
-    df_print: paged
-fontsize: 11pt
+  word_document: default
+fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
 
 
 # Q. 1b(i)
@@ -191,5 +193,16 @@ MSE2 > MSE3 #MSE3 is less than both MSE1 and MSE2
 
 Since $MSE_3$ is less than both $MSE_1$ and $MSE_2$, $MSE_3$ (i.e.,the mean square error of the modified MLE) has the least residual error for a 1000 uniform random samples of size 30.
 
-
+\begin {align*}
+(bias(2 \bar X)&=E(2 \bar X)-\theta\\
+&=2E( \bar X)-\theta\\
+&=2\frac{\theta}{2}-\theta\\
+&=0\\)&&
+(Var(2 \bar X)&=4Var(\bar X)\\
+&=4\frac{\theta^2}{12n}\\
+&=\frac{\theta^2}{3n}\\\\
+MSE(2\bar X)&=Var(2 \bar X)+bias^2(2 \bar X)\\
+&=Var(2 \bar X)\\
+&=\frac{\theta^2}{3n}\\)
+\end {align*}
 
