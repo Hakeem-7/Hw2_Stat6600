@@ -1,0 +1,197 @@
+---
+title: "Homework 2"
+author: "Akeem Ajede"
+date: "10/4/2019"
+header-includes:
+   - \DeclareUnicodeCharacter{2212}{-}
+
+output:
+  pdf_document: default
+  word_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# Q. 1b(i)
+
+Sketch the pdf of U(0,10).
+
+```{r}
+set.seed(7001)
+U = function(x){dunif(x,0,10)}
+x <- seq(-5,15,0.001)
+plot(x, U(x), type = 'l', col = 'dark red', main = 'PDF of a Uniform Distribution')
+```
+
+
+# Q.1b(ii)
+
+Sketch the cdf of U(0,10).
+
+```{r}
+set.seed(7001)
+cdf = function(x){punif(x,0,10)}
+plot(x,cdf(x),type='l', col = 2, lwd = 2)
+```
+
+
+# Q. 1c(i)
+
+Use R to generate a random sample of size 50 from Uniform(0, 10) and plot the histogram (overlaid with the true pdf).
+
+```{r}
+set.seed(7001)
+m = runif(50,0,10)
+hist(m, probability = T, breaks = 15, main = "Histogram of a Uniform Distribution (n=50)", col = 'light blue')
+curve(dunif(x,0,10), col= 2, lwd=2, add=TRUE)
+```
+
+
+# Q. 1c(ii)
+
+plot the emperical cdf overlaid with the theoretical cdf.
+
+```{r}
+set.seed(7001)
+plot(ecdf(m), main = "ECDF of a Uniform Distribution (n=50)")
+curve(punif(x,0,10), col= 2, lwd=2, add=TRUE)
+```
+
+
+# Q. 1d(i)
+
+Use R to generate a random sample of size 1000 from Uniform(0, 10) and plot the
+histogram (overlaid with the true pdf).
+
+```{r}
+set.seed(7001)
+j = runif(1000,0,10)
+hist(j, probability = T, breaks = 15, col = "light blue", main = "Histogram of a Uniform Distribution")
+curve(dunif(x,0,10), col= 2, lwd=2, add=TRUE)
+```
+
+
+# Q. 1d(ii)
+
+Plot the emperical cdf overlaid with the theoretical cdf.
+
+```{r}
+plot(ecdf(j), main = "ECDF of a Uniform Distribution", lwd = 2)
+curve(punif(x,0,10), col= 2, lwd=2, add=TRUE)
+```
+
+
+# Q. 2d
+
+Use R to generate 1000 independent random samples of size 30 from Uniform(0, 10). Compute the corresponding 1000 values of $\bf\hat{\theta_1},\bf\hat{\theta_2},\bf\hat{\theta_3}.$
+
+```{r}
+
+set.seed(7001)
+#generic //my.samples = matrix(runif(n*r,min,max),r)
+# r = Number of random samples; n = sample size; min = a and max = b for a uniform distribution.
+n <- 30
+r <- 1000
+sample.space = matrix(runif(n*r,0,10),r)
+
+theta1 = 2*(apply(sample.space,1,mean)) #compute the means of each row
+
+# l = mean(sample.space[1,])
+# l
+
+theta2 = apply(sample.space,1,max) #Compute the max of each row
+
+theta3 = ((n+1)/n)*(apply(sample.space,1,max)) #Compute the max of each row
+
+```
+
+
+# Q. 2d(i)
+
+For each estimator, draw the histograms based on their 1000 estimates. Include the theoretical pdf overlayed. For $\bf\hat{\theta_1},$ you can use the approximate distribution in part (c).
+
+```{r}
+
+set.seed(7001)
+par(mfrow = c(2,2))
+
+hist(sample.space[1,],col="light blue",main="Distribution of the Sample in the First Row")
+
+#The expression in eacy curve() is the respective "pdf" parameter
+
+hist(theta1,col="light blue",main="Sampling Distribution of theta1",probability = T)
+curve(dnorm(x, mean=10,sd=1.054093), col="red", lwd=2, add=TRUE)
+
+hist(theta2,col="light blue",main="Sampling Distribution of theta2",freq=F)
+curve(((30*(x^29))/10^30), col=2, lwd=2, add=TRUE) 
+
+hist(theta3,col="light blue",main="Sampling Distribution of Theta3",freq=F)
+curve(((30*(x^29))/10^30)*((30/31)^30), col= 2, lwd=2, add=TRUE)
+
+
+```
+
+
+# Q. 2d(ii)
+
+For each estimator, draw the ecdf based on their 1000 estimates. Include the theoretical cdf overlayed. For $\bf\hat{\theta_1},$ you can use the approximate distribution in part (c).
+
+```{r}
+set.seed(7001)
+
+par(mfcol = c(2,2)) #2 rows by 2 col output space
+
+plot(ecdf(theta1), lwd = 2)
+curve(pnorm(x,10,1.054093), 
+        add=TRUE,
+        col="red")
+  
+plot(ecdf(theta2), lwd = 2)
+curve((x^30)/(10^30), col="red", lwd=2, add=TRUE)
+
+plot(ecdf(theta3), lwd = 2)
+curve(((x^30)/(10^30))*((30/31)^30), col="red", lwd=2, add=TRUE)
+```
+
+# Q. 2d(iii)
+
+Compute the empirical bias, variance and MSE for each of the estimators. Compare
+and contrast.
+Note: $bias\bf\hat{(\theta_1})$ = $\bf\bar{\hat{(\theta_1})}$ − $\bf{\theta}$ and MSE can be computed as above or recall, $MSE = Var + bias^2.$
+
+```{r}
+
+bias1 = mean(theta1) - 10 #from bias  = E(theta) - theta, where theta = 10 in U(0,10)
+
+var1 <- var(theta1) #Computes the variance of theta 1
+
+MSE1 = var1 + (bias1^2)
+
+bias2 = mean(theta2) - 10
+
+var2 = var(theta2) #Compute the variance of theta 2
+
+MSE2 = var2+(bias2^2)
+
+bias3 = mean(theta3) - 10
+
+var3 = var(theta3) #Compute the variance of each row
+
+MSE3 = var3+(bias3^2)
+
+MSE1 > MSE2 #i.e., MSE2 is less than MSE1
+
+MSE1 > MSE3 #i.e., MSE3 is also less than MSE1
+
+MSE2 > MSE3 #MSE3 is less than both MSE1 and MSE2
+```
+
+Since $MSE_3$ is less than both $MSE_1$ and $MSE_2$, $MSE_3$ (i.e.,the mean square error of the modified MLE) has the least residual error for a 1000 uniform random samples of size 30.
+
+
+
